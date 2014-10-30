@@ -89,7 +89,7 @@ def Ping(sequence_only=False):
     curTime = time.time()
     if _TimeLastPing != 0 and curTime > _TimeLastPing + 1.5 :
         writeLog(LOG_SEQ_ERROR, 'Last ping at ' + time.ctime(_TimeLastPing))
-    _TimeLastPing = curTime
+	_TimeLastPing = curTime
     
     new_seq = int(commandParts[0])
     if sequence_only :
@@ -99,12 +99,12 @@ def Ping(sequence_only=False):
     if new_seq > _Sequence:
         if new_seq != _Sequence + 1 :
             writeLog(LOG_SEQ_ERROR, 'Missed sequence number: ' + str(_Sequence) + ' ' + str(new_seq))
-        _Sequence = new_seq
-        writeLog(LOG_NEW_COMMAND, 'New command: ' + str(commandParts))
-        Arduino.Execute(commandParts)
-        Arduino.Get_Status()
-    elif commandParts[1] == 'reset' :
-        _cmd_reset()
+	    _Sequence = new_seq
+	    writeLog(LOG_NEW_COMMAND, 'New command: ' + str(commandParts))
+	    Arduino.Execute(commandParts)
+	    Arduino.Get_Status()
+	elif commandParts[1] == 'reset' :
+	    _cmd_reset()
 
 def _cmd_reset() :
     global _Sequence
